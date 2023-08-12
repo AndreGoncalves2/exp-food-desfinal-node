@@ -1,8 +1,8 @@
 const knex = require("../database/knex");
 
 class IngredientsController {
-    async create({ name, dish_id}) {
-        const ingredients = await knex("ingredients").insert({ name, dish_id });
+    async create({ ingredientsInsert }) {
+        const ingredients = await knex("ingredients").insert(ingredientsInsert);
         return ingredients;
     };
 };

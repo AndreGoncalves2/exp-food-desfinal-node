@@ -1,16 +1,20 @@
 const DishRepository = require("../repositories/dishRepository");
+const IngredientsRepository = require("../repositories/ingredientsRepository");
+
 const DishCreateService = require("../services/dishCreateService");
 
 class DishController {
     async create(request, response) {
-        const {name, description, category, price} = request.body;
+        const { name, description, photo, category, price, ingredients } = request.body;
         
         const dishRepository = new DishRepository();
-        const dishCreateService = new DishCreateService(dishRepository);
+        const ingredientsRepository = new IngredientsRepository();
 
-        const dish = await dishCreateService.execute({name, description, category, price});
+        const dishCreateService = new DishCreateService(dishRepository, ingredientsRepository);
 
-        return response.status(201).json({ name, description, category, price });
+        const dish = await dishCreateService.execute({ name, description, photo, category, price, ingredients });
+        
+        return response.status(201).json({ name, description, photo, category, price });
     };
 };
 
