@@ -6,8 +6,8 @@ class DishCreateService {
         this.ingredientsRepository = ingredientsRepository;
     };
 
-    async execute({ name, description, photo,  category, price, ingredients }) {
-        if ( !name || !description || !category || !price) {
+    async execute({ name, description, category, price, ingredients }) {
+        if ( !name || !description || !category || !price ) {
             throw new AppError("Preencha todos os campos.");
         };
 

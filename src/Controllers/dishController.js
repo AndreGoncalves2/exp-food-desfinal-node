@@ -5,7 +5,7 @@ const DishCreateService = require("../services/dishCreateService");
 
 class DishController {
     async create(request, response) {
-        const { name, description, photo, category, price, ingredients } = request.body;
+        const { name, description, category, price, ingredients } = request.body;
         
         const dishRepository = new DishRepository();
         const ingredientsRepository = new IngredientsRepository();
