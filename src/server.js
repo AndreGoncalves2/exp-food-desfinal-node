@@ -7,12 +7,16 @@ const cors = require("cors");
 const routes = require("./routes");
 const migrateRun = require("./database/sqlite/migrations");
 
+const uploadConfig = require("./configs/upload");
+
 const app = express();
 
 migrateRun();
 
 app.use(express.json());
 app.use(cors()); 
+
+app.use("/dish", express.static(uploadConfig.UPLOADS_FOLDER));
 
 app.use(routes);
 

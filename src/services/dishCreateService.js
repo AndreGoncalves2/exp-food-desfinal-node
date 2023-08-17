@@ -9,8 +9,6 @@ class DishCreateService {
     async execute({ name, description, category, price, ingredients, img, id}) {
         const arrayIngredient = ingredients.split(',');
 
-        console.log(arrayIngredient)
-
         if ( !name || !description || !category || !price ) {
             throw new AppError("Preencha todos os campos.");
         };
