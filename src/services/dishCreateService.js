@@ -6,8 +6,8 @@ class DishCreateService {
         this.ingredientsRepository = ingredientsRepository;
     };
 
-    async execute({ name, description, category, price, ingredients }) {
-        if ( !name || !description || !category || !price ) {
+    async execute({ name, description, category, price, ingredients, img }) {
+        if ( !name || !description || !category || !price || img ) {
             throw new AppError("Preencha todos os campos.");
         };
 
@@ -20,7 +20,7 @@ class DishCreateService {
         
         price = price.replace(/[a-zA-Z$]+/g, "").replace(/,/g, ".");
         
-        const [dish] = await this.dishRepository.create({ name, description, category, price });
+        const [dish] = await this.dishRepository.create({ name, description, category, price, img });
 
         if (ingredients.length > 0) {
             const ingredientsInsert = ingredients.map((ingredient) => {
