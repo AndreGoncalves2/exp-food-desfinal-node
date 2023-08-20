@@ -10,6 +10,11 @@ class UserRepository {
         const [user] = await knex("user").where({ email });
         return user;
     };
+
+    async findById({ id }) {
+        const [user] = await knex("user").where({ id });
+        return user;
+    };
 };
 
 module.exports = UserRepository;

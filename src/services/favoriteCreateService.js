@@ -10,6 +10,13 @@ class FavoriteCreateService {
             throw new AppError("Nao foi possível adicionar esse item, tente novamente");
         };
 
+        const isFavorite = await this.favoriteRepository.findById({ user_id, dish_id });
+
+        if (isFavorite) return;
+
         const favorite = await this.favoriteRepository.create({ user_id, dish_id });
+        return favorite;
     };
 };
+
+module.exports = FavoriteCreateService;

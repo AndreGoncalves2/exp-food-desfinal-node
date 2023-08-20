@@ -11,16 +11,13 @@ class UserCreateService {
             throw new AppError("Preencha todos os campos");
         };
 
-        
-        const userExists = await this.userRepository.findByEmail({email});
-        console.log(userExists)
+        const userExists = await this.userRepository.findByEmail({ email });
         if (userExists) {
             throw new AppError("E-mail já cadastrado");
         };
         
-        
         const hashedPassword = await hash(password, 8);
-        const user = await this.userRepository.create({name, email, password: hashedPassword});
+        const user = await this.userRepository.create({ name, email, password: hashedPassword });
         return user;
     };
 };

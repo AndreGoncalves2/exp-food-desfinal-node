@@ -2,13 +2,7 @@ const knex = require("../database/knex");
 const AppError = require("../utils/AppError");
 
 class DishRepository {
-    async create({ name, description, category, price, img, id}) {
-        const [consult] = await knex("user").where({ id }).select("adm");
-
-        if (!Boolean(consult.adm)) {
-            throw new AppError("Usuário sem permissão.");
-        };
-
+    async create({ name, description, category, price, img}) {
         const dish = await knex("dish").insert({ name, description, category, price, img });
         return dish;
     };

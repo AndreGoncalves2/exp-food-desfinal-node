@@ -1,5 +1,6 @@
 const DishRepository = require("../repositories/dishRepository");
 const IngredientsRepository = require("../repositories/ingredientsRepository");
+const UserRepository = require("../repositories/userRepository");
 
 const DishCreateService = require("../services/dishCreateService");
 const AppError = require("../utils/AppError");
@@ -14,12 +15,12 @@ class DishController {
 
         const dishRepository = new DishRepository();
         const ingredientsRepository = new IngredientsRepository();
+        const userRepository = new UserRepository();
+
         const diskStorage = new DiskStorage();
 
-
-        
         try {
-            const dishCreateService = new DishCreateService(dishRepository, ingredientsRepository);
+            const dishCreateService = new DishCreateService(dishRepository, ingredientsRepository, userRepository);
 
             await dishCreateService.execute({ name, description, img, category, price, ingredients, id });
             await diskStorage.saveFile(img);
