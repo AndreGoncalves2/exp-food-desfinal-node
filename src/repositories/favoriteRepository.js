@@ -20,5 +20,11 @@ class FavoriteRepository {
         const favorites = await knex("favorite").where({ user_id, dish_id });
         return favorites;
     };
+
+    async findDishJoinFav({ id }) {
+        const favorites = await knex("dish").join('favorite','dish.id', '=', 'favorite.dish_id').where('user_id', id);
+        return favorites;
+    };
+
 };
 module.exports = FavoriteRepository;

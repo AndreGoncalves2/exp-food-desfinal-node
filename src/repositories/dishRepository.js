@@ -15,6 +15,11 @@ class DishRepository {
         const [dish] = await knex("dish").where({ name });
         return dish;
     };
+
+    async findById({ id }) {
+        const [dish] = await knex("dish").where({ id });
+        return dish;
+    };
 };
 
 module.exports = DishRepository;

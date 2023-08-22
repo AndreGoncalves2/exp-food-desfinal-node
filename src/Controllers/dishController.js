@@ -33,12 +33,11 @@ class DishController {
     };
 
     async showDishes(request, response) {
-
         const dishRepository = new DishRepository();
     
         const dishes = await dishRepository.findAll();
 
-        response.status(200).json( dishes );
+        response.status(200).json(dishes);
     };
 };
 
