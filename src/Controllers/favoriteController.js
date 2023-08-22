@@ -39,7 +39,6 @@ class FavoriteController {
     };
 
     async findAll(request, response) {
-        console.log("ssaddqweq")
         const { id: user_id } = request.user;
         
         const favoriteRepository = new FavoriteRepository()
