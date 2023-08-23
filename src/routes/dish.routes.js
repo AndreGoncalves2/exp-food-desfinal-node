@@ -13,6 +13,5 @@ const upload = multer(uploadConfig.MULTER);
 
 dishRoutes.post("/",ensureAuthenticated , upload.single("photo"), dishControllers.create);
 dishRoutes.get("/", dishControllers.showDishes);
-// dishRoutes.get("/:id", dishControllers.showDishById);
 
 module.exports = dishRoutes;
