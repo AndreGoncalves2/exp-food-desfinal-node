@@ -20,6 +20,12 @@ class DishRepository {
         const [dish] = await knex("dish").where({ id });
         return dish;
     };
+
+    async findDishAndIngredients({ dish_id }) {
+        const [dish] = await knex('dish')
+        .select('dish.*', knex.raw('(SELECT GROUP_CONCAT(name, ", ") FROM ingredients WHERE dish_id = dish.id) AS ingredients'))
+        return dish;
+    }
 };
 
 module.exports = DishRepository;
