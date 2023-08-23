@@ -39,6 +39,16 @@ class DishController {
 
         response.status(200).json(dishes);
     };
+
+    async showDishAndIngredientsById(request, response) {
+        const  { dish_id }  = request.params;
+        
+        const dishRepository = new DishRepository();
+    
+        const dish = await dishRepository.findDishAndIngredients({ dish_id });
+
+        response.status(200).json(dish);
+    };
 };
 
 module.exports = DishController;
