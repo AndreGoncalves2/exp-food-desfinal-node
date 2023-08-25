@@ -13,8 +13,6 @@ class DishDeleteService {
 
         const dish = await this.dishRepository.findById({ id: dish_id });
 
-        console.log(dish);
-
         const diskStorage = new DiskStorage();
         await diskStorage.deleteFile(dish.img);
 

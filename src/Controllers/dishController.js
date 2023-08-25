@@ -68,7 +68,6 @@ class DishController {
     async delete(request, response) {
         const { id } = request.user;
         const { dish_id }  = request.params;
-        console.log(dish_id);
 
         const dishRepository = new DishRepository();
         const userRepository = new UserRepository();
