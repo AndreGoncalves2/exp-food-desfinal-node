@@ -3,8 +3,10 @@ const IngredientsRepository = require("../repositories/ingredientsRepository");
 const UserRepository = require("../repositories/userRepository");
 
 const DishCreateService = require("../services/dishCreateService");
-const AppError = require("../utils/AppError");
-const DiskStorage = require("../providers/diskStorage");
+const DishUpdateService = require("../services/dishUpdateService");
+
+
+const DishDeleteService = require("../services/dishDeleteService");
 
 class DishController {
     async create(request, response) {
@@ -17,19 +19,32 @@ class DishController {
         const ingredientsRepository = new IngredientsRepository();
         const userRepository = new UserRepository();
 
-        const diskStorage = new DiskStorage();
+       
 
-        try {
-            const dishCreateService = new DishCreateService(dishRepository, ingredientsRepository, userRepository);
+        const dishCreateService = new DishCreateService(dishRepository, ingredientsRepository, userRepository);
 
-            await dishCreateService.execute({ name, description, img, category, price, ingredients, id });
-            await diskStorage.saveFile(img);
-            
-            return response.status(201).json();
+        await dishCreateService.execute({ name, description, img, category, price, ingredients, id });
+       
+        
+        return response.status(201).json();
+     
+    };
 
-        } catch (error) {
-            throw new AppError(error.message);
-        };
+    async update(request, response) {
+        const { id: dish_id, name, description, category, price, ingredients, oldImg } = request.body;
+        const { id: user_id } = request.user;
+        const img = request.file.filename;
+        
+
+        const dishRepository = new DishRepository();
+        const userRepository = new UserRepository();
+        const ingredientsRepository = new IngredientsRepository();
+
+        const dishUpdatedService = new DishUpdateService(dishRepository, userRepository, ingredientsRepository);
+
+        dishUpdatedService.execute({ dish_id, user_id, name, description, category, price, img, ingredients, oldImg });
+       
+        return response.status(204).json();
     };
 
     async showDishes(request, response) {
@@ -48,6 +63,21 @@ class DishController {
         const dish = await dishRepository.findDishAndIngredients({ dish_id });
 
         response.status(200).json(dish);
+    };
+
+    async delete(request, response) {
+        const { id } = request.user;
+        const { dish_id }  = request.params;
+        console.log(dish_id);
+
+        const dishRepository = new DishRepository();
+        const userRepository = new UserRepository();
+        
+        const dishDeleteService = new DishDeleteService({ dishRepository, userRepository });
+
+        await dishDeleteService.execute({ dish_id, id });
+        
+        return response.status(204).json();
     };
 };
 

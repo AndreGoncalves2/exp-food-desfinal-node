@@ -1,4 +1,5 @@
 const AppError = require("../utils/AppError");
+const DiskStorage = require("../providers/diskStorage");
 
 class DishCreateService {
     constructor(dishRepository, ingredientsRepository, userRepository) {
@@ -27,6 +28,9 @@ class DishCreateService {
         if (!Boolean(user.adm)) {
             throw new AppError("Usuário sem permissão.");
         };
+
+        const diskStorage = new DiskStorage();
+        await diskStorage.saveFile(img);
         
         const [dish] = await this.dishRepository.create({ name, description, category, price, img, id });
 
