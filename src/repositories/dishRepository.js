@@ -12,7 +12,6 @@ class DishRepository {
     };
 
     async delete({ dish_id }) {
-        console.log(dish_id);
         await knex("dish").delete().where({ id: dish_id });
     };
     
