@@ -31,7 +31,7 @@ class DishRepository {
 
     async findDishAndIngredients({ dish_id }) {
         const [dish] = await knex('dish')
-        .select('dish.*', knex.raw('(SELECT GROUP_CONCAT(name, ", ") FROM ingredients WHERE dish_id = dish.id) AS ingredients'))
+        .select('dish.*', knex.raw('(SELECT GROUP_CONCAT(name, ", ") FROM ingredients WHERE dish_id = dish.id) AS ingredients')).where({ id: dish_id });
         return dish;
     };
 };
