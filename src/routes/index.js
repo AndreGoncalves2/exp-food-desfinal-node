@@ -5,6 +5,7 @@ const dishRoutes = require("./dish.routes");
 const sessionsRoutes = require("./sessions.routes");
 const favoriteRoutes = require("./favorite.routes");
 const ingredientsRoutes = require("./ingredients.routes");
+const orderRoutes = require("./order.routes");
 
 const routes = Router();
 
@@ -13,5 +14,6 @@ routes.use("/dish", dishRoutes);
 routes.use("/session", sessionsRoutes);
 routes.use("/favorite", favoriteRoutes);
 routes.use("/ingredients", ingredientsRoutes);
+routes.use("/order", orderRoutes);
 
 module.exports = routes;
