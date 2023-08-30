@@ -29,10 +29,11 @@ class OrderController {
 
     async getOrder(request,response) {
         const { id: user_id } = request.user;
-
+        
         const orderRepository = new OrderRepository();
         const order = await orderRepository.findByUserId({ user_id });
-
+        
+        console.log(order)
         return response.status(200).json(order);
     }
 };
