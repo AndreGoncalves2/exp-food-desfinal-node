@@ -12,7 +12,7 @@ class OrderController {
 
         const order = await orderCreateService.execute({ quantity, total_price, user_id, dish_id });
         
-        return response.status(201).json();
+        return response.status(201).json(order);
     };
 
     async delete(request, response) {
@@ -22,11 +22,9 @@ class OrderController {
         const orderRepository = new OrderRepository();
         const orderDeleteService = new OrderDeleteService(orderRepository);
 
-        await orderDeleteService.execute({ user_id, order_id });
+        const order = await orderDeleteService.execute({ user_id, order_id });
 
-        console.log(user_id);
-
-        response.status(200).json();
+        response.status(200).json(order);
     };
 
     async getOrder(request,response) {
