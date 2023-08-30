@@ -9,5 +9,6 @@ const orderController = new OrderController ();
 
 orderRoutes.post("/", ensureAuthenticated, orderController.create);
 orderRoutes.get("/", ensureAuthenticated, orderController.getOrder);
+orderRoutes.delete("/:order_id", ensureAuthenticated, orderController.delete);
 
 module.exports = orderRoutes;

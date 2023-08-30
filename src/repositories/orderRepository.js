@@ -6,8 +6,14 @@ class OrderRepository {
         return order;
     };
 
+    async delete({ order_id, user_id }) {
+        const order = await knex("order").delete().where({ id:order_id, user_id });
+        return order;
+    };
+
     async findByUserId({ user_id }) {
-        const order = await knex("order").join("dish", "dish_id", "=", "dish.id").where({ user_id });
+        const order = await knex("order").join("dish", "dish_id", "=", "dish.id")
+        .where({ user_id }).select("order.*", "dish.img", "dish.name");
         return order;
     };
 };

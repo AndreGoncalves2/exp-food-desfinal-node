@@ -1,4 +1,5 @@
 const OrderCreateService = require("../services/orderCreateService");
+const OrderDeleteService = require("../services/orderDeleteService");
 const OrderRepository = require("../repositories/orderRepository");
 
 class OrderController {
@@ -12,6 +13,20 @@ class OrderController {
         const order = await orderCreateService.execute({ quantity, total_price, user_id, dish_id });
         
         return response.status(201).json();
+    };
+
+    async delete(request, response) {
+        const { order_id } = request.params;
+        const { id: user_id } = request.user;
+
+        const orderRepository = new OrderRepository();
+        const orderDeleteService = new OrderDeleteService(orderRepository);
+
+        await orderDeleteService.execute({ user_id, order_id });
+
+        console.log(user_id);
+
+        response.status(200).json();
     };
 
     async getOrder(request,response) {

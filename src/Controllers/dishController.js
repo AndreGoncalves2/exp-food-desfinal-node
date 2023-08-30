@@ -74,9 +74,9 @@ class DishController {
         
         const dishDeleteService = new DishDeleteService({ dishRepository, userRepository });
 
-        await dishDeleteService.execute({ dish_id, id });
+        const order = await dishDeleteService.execute({ dish_id, id });
         
-        return response.status(204).json();
+        return response.status(200).json(order);
     };
 };
 
