@@ -22,9 +22,9 @@ class FavoriteController {
         const favoriteRepository = new FavoriteRepository()
         const favoriteDeleteService = new FavoriteDeleteService(favoriteRepository);
 
-        await favoriteDeleteService.execute({ dish_id: dishId, user_id: id });
+        const data = await favoriteDeleteService.execute({ dish_id: dishId, user_id: id });
         
-        return response.status(200).json();
+        return response.status(200).json(data);
     };
 
     async find(request, response) {

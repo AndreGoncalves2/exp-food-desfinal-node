@@ -24,7 +24,7 @@ class OrderController {
 
         const order = await orderDeleteService.execute({ user_id, order_id });
 
-        response.status(200).json(order);
+        return response.status(200).json(order);
     };
 
     async getOrder(request,response) {
@@ -33,7 +33,6 @@ class OrderController {
         const orderRepository = new OrderRepository();
         const order = await orderRepository.findByUserId({ user_id });
         
-        console.log(order)
         return response.status(200).json(order);
     }
 };
