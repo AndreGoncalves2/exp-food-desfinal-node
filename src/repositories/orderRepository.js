@@ -18,8 +18,8 @@ class OrderRepository {
         return order;
     };
 
-    async update({ user_id, sale_id }) {
-        const order = await knex("order").update({ sale_id }).where({ user_id });
+    async update({ user_id, sale_id, invoice }) {
+        const order = await knex("order").update({ sale_id, invoice }).where({ user_id, invoice: false });
         return order;
     };
 

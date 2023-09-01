@@ -33,7 +33,7 @@ class FavoriteController {
 
         const favoriteRepository = new FavoriteRepository()
 
-        const favorite = await favoriteRepository.findByUserAndDish({ dish_id: dishId, user_id: id });
+        const [favorite] = await favoriteRepository.findByUserAndDish({ dish_id: dishId, user_id: id });
 
         return response.status(200).json(favorite);
     };
