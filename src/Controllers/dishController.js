@@ -1,5 +1,5 @@
 const DishRepository = require("../repositories/dishRepository");
-const IngredientsRepository = require("../repositories/ingredientsRepository");
+const IngredientRepository = require("../repositories/ingredientRepository");
 const UserRepository = require("../repositories/userRepository");
 
 const DishCreateService = require("../services/dishCreateService");
@@ -16,12 +16,12 @@ class DishController {
         
 
         const dishRepository = new DishRepository();
-        const ingredientsRepository = new IngredientsRepository();
+        const ingredientRepository = new IngredientRepository();
         const userRepository = new UserRepository();
 
        
 
-        const dishCreateService = new DishCreateService(dishRepository, ingredientsRepository, userRepository);
+        const dishCreateService = new DishCreateService(dishRepository, ingredientRepository, userRepository);
 
         await dishCreateService.execute({ name, description, img, category, price, ingredients, id });
        
@@ -38,9 +38,9 @@ class DishController {
 
         const dishRepository = new DishRepository();
         const userRepository = new UserRepository();
-        const ingredientsRepository = new IngredientsRepository();
+        const ingredientRepository = new IngredientRepository();
 
-        const dishUpdatedService = new DishUpdateService(dishRepository, userRepository, ingredientsRepository);
+        const dishUpdatedService = new DishUpdateService(dishRepository, userRepository, ingredientRepository);
 
         dishUpdatedService.execute({ dish_id, user_id, name, description, category, price, img, ingredients, oldImg });
        

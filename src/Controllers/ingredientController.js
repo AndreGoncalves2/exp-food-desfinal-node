@@ -1,14 +1,14 @@
-const IngredientsRepository = require("../repositories/ingredientsRepository");
+const IngredientRepository = require("../repositories/ingredientRepository");
 
-class ingredientsController {
+class ingredientController {
     async findByDishId(request, response) {
         const  { dish_id }  = request.params;
 
-        const ingredientsRepository = new IngredientsRepository();
+        const ingredientsRepository = new IngredientRepository();
         const ingredients = await ingredientsRepository.findByDishId({ dish_id });
 
         return response.status(200).json(ingredients);
     };
 };
 
-module.exports = ingredientsController;
+module.exports = ingredientController;

@@ -6,8 +6,20 @@ class OrderRepository {
         return order;
     };
 
-    async delete({ order_id, user_id }) {
-        const order = await knex("order").delete().where({ id:order_id, user_id });
+    async delete({ order_id=null, user_id }) {
+        let query = knex("order").where({ user_id });
+
+        if (order_id) {
+            query = query.where({ id:order_id});
+        };
+
+        const order = query.delete();
+        
+        return order;
+    };
+
+    async update({ user_id, sale_id }) {
+        const order = await knex("order").update({ sale_id }).where({ user_id });
         return order;
     };
 
