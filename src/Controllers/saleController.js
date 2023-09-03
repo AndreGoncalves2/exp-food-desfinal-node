@@ -12,7 +12,16 @@ class SaleController {
         const saleCreateService = new SaleCreateService({ saleRepository, orderRepository });
 
         const sale = await saleCreateService.execute({ user_id: user.id });
-        return response.status(200).json(sale);
+        return response.status(201).json(sale);
+    };
+
+    async getSale(request, response) {
+        const user = request.user;
+        
+
+        const saleRepository = new SaleRepository();
+        const sale = await saleRepository.getSale({ user_id: user.id })  
+        return response.status(200).json(sale);      
     }
 }
 
