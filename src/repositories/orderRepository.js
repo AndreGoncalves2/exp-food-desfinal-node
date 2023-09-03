@@ -23,10 +23,19 @@ class OrderRepository {
         return order;
     };
 
-    async findByUserId({ user_id }) {
-        const order = await knex("order").join("dish", "dish_id", "=", "dish.id")
-        .where({ user_id }).select("order.*", "dish.img", "dish.name");
-        return order;
+    async findByUserId({ user_id, all }) {
+        
+        if (all == "false") {
+            const invoice = false;
+
+            const order = await knex("order").join("dish", "dish_id", "=", "dish.id")
+            .where({ user_id, invoice }).select("order.*", "dish.img", "dish.name");
+            return order;
+        } else {
+            const order = await knex("order").join("dish", "dish_id", "=", "dish.id")
+            .where({ user_id }).select("order.*", "dish.img", "dish.name");
+            return order;
+        };
     };
 };
 

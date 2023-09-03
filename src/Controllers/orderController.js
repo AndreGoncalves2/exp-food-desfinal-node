@@ -27,11 +27,13 @@ class OrderController {
         return response.status(200).json(order);
     };
 
-    async getOrder(request,response) {
+    async getOrder(request, response) {
         const { id: user_id } = request.user;
-        
+        const { all }  = request.params;
+
+       
         const orderRepository = new OrderRepository();
-        const order = await orderRepository.findByUserId({ user_id });
+        const order = await orderRepository.findByUserId({ user_id, all });
         
         return response.status(200).json(order);
     }
