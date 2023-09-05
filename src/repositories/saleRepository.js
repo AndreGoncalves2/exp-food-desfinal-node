@@ -7,6 +7,7 @@ class SaleRepository {
     };
 
     async getSale({ user_id }) {
+        user_id = 3;
         const sale = await knex("order")
         .join("dish", "order.dish_id", "=", "dish.id")
         .join("sale", "order.sale_id", "=", "sale.id")
