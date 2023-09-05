@@ -7,14 +7,14 @@ class SaleRepository {
     };
 
     async getSale({ user_id }) {
-        const sale = await knex("sale").join("order", "sale.id", "=", "order.sale_id")
-        .join("dish", "order.dish_id", "=", "dish.id").where("sale.user_id", user_id)
+        const sale = await knex("order")
+        .join("dish", "order.dish_id", "=", "dish.id")
+        .join("sale", "order.sale_id", "=", "sale.id")
+        .select("sale.id", "sale.status", "sale.created_at", "dish.name", "order.quantity")
+        .where("sale.user_id", user_id).where("order.invoice", 1);
         
-            
-        console.log(sale);
         return sale;
-    }
-
+    };
 };
 
 module.exports = SaleRepository;
