@@ -1,8 +1,8 @@
 const knex = require("../database/knex");
 
 class IngredientRepository {
-    async create({ ingredientInsert }) {
-        const ingredients = await knex("ingredient").insert(ingredientInsert);
+    async create({ ingredientsInsert }) {
+        const ingredients = await knex("ingredient").insert(ingredientsInsert);
         return ingredients;
     };
 
