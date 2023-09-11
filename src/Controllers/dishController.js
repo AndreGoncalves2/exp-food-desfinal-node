@@ -65,6 +65,15 @@ class DishController {
         response.status(200).json(dish);
     };
 
+    async showDishByNameOrIngredient(request, response) {
+        const { name } = request.params;
+
+        const dishRepository = new DishRepository();
+        const dishes = await dishRepository.findDishByNameOrIngredient({ name });
+        
+        return response.status(200).json(dishes);
+    };
+
     async delete(request, response) {
         const { id } = request.user;
         const { dish_id }  = request.params;

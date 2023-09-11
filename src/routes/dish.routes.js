@@ -16,6 +16,7 @@ dishRoutes.put("/", ensureAuthenticated , upload.single("photo"), dishController
 dishRoutes.delete("/:dish_id", ensureAuthenticated, dishControllers.delete);
 dishRoutes.get("/", dishControllers.showDishes);
 dishRoutes.get("/:dish_id", dishControllers.showDishAndIngredientsById);
+dishRoutes.get("/:name/all", dishControllers.showDishByNameOrIngredient);
 
 
 module.exports = dishRoutes;

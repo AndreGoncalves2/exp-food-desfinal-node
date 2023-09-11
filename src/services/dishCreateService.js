@@ -30,20 +30,25 @@ class DishCreateService {
         };
 
         const diskStorage = new DiskStorage();
-        await diskStorage.saveFile(img);
-        
-        const [dish] = await this.dishRepository.create({ name, description, category, price, img, id });
+        try {
+            await diskStorage.saveFile(img);
+            
+            const [dish] = await this.dishRepository.create({ name, description, category, price, img, id });
+    
+            if (arrayIngredient.length > 0) {
+                const ingredientsInsert = arrayIngredient.map((ingredient) => {
+                    return {
+                        name: ingredient,
+                        dish_id: dish
+                    };
+                });
 
-        if (arrayIngredient.length > 0) {
-            const ingredientsInsert = arrayIngredient.map((ingredient) => {
-                return {
-                    name: ingredient,
-                    dish_id: dish
-                };
-            });
-
-            await this.ingredientsRepository.create({ ingredientsInsert });
-        };
+                console.log(ingredientsInsert)
+                await this.ingredientsRepository.create({ ingredientsInsert });
+            };
+        } catch (err) {
+            console.error(err);
+        }
     };
 };
 

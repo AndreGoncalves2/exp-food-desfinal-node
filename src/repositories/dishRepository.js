@@ -35,6 +35,16 @@ class DishRepository {
 
         return dish;
     };
+
+    async findDishByNameOrIngredient({ name }) {
+        const dishes = await knex("dish").join("ingredient", "dish.id", "=", "ingredient.dish_id")
+        .select("dish.*", "ingredient.name AS ingredient", "ingredient.dish_id" )
+        .where("dish.name", "like", `%${name}%`)
+        .orWhere("ingredient.name", "like", `%${name}%`)
+        .groupBy('dish.id');
+
+        return dishes;
+    };
 };
 
 module.exports = DishRepository;
