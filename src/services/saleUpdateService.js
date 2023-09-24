@@ -14,7 +14,7 @@ class SaleUpdateService {
         if (!isAdm) {
             throw new AppError("Usuário sem permissão");
         };
-        console.log(statusName)
+        
         const sale = await this.saleRepository.update({ sale_id, statusName });
         return sale;
     };
