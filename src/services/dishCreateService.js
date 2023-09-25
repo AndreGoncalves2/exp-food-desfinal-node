@@ -43,7 +43,6 @@ class DishCreateService {
                     };
                 });
 
-                console.log(ingredientsInsert)
                 await this.ingredientsRepository.create({ ingredientsInsert });
             };
         } catch (err) {
