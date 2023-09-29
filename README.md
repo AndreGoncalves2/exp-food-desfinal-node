@@ -61,5 +61,8 @@ npm run dev
 - O projeto estará disponível.
 #### Front-End do projeto:  <a href="https://github.com/AndreGoncalves2/exp-food-desfinal">Food Explorer</a>
 #### Clique para visualizar o projeto online: <a href="https://foods-rocketseat.netlify.app/">Food Explorer</a>
+
+- ⚠️ O Back-End do projeto está hospedado em uma plataforma gratuita, devido a isso, o servidor "hiberna" após 15 minutos sem utilização. Se tiver tentando fazer o primeiro contato com o site, aguarde **(em média 1 mim)** após fazer a **primeira requisição**.
+  
 - E-mail de administrador: **admin@hotmail.com**
 - Senha: **admin1233**
