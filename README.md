@@ -26,9 +26,13 @@
 Api criada em Node e consumida pelo <a href="https://github.com/AndreGoncalves2/exp-food-desfinal/edit/main/README.md" target="_blank">Font-End</a> em React
 
 ## Principais funcionalidades: 
+
 - **Upload de imagens:** Essa funcionalidade permite que os usuários enviem imagens para o servidor, onde são armazenadas e gerenciadas de acordo com as necessidades do aplicativo.
+- 
 - **Middleware de autenticação:** Um middleware de autenticação é uma parte fundamental de muitos sistemas de software e redes que exigem autenticação e autorização para proteger recursos sensíveis.
+- 
 - **Comunicação com um banco de dados SQLite:** A comunicação com um banco de dados SQLite envolve o uso de uma linguagem de programação (neste caso javaScript) para interagir com o banco de dados SQLite e executar operações como criação, leitura, atualização e exclusão de dados.
+- 
 - **Gestão de Solicitações e Respostas**: A gestão de solicitações e respostas HTTP é uma parte fundamental do desenvolvimento de aplicativos web e APIs. Envolve o processamento de solicitações HTTP enviadas por clientes (como navegadores da web ou aplicativos móveis) e a criação de respostas HTTP apropriadas para serem enviadas de volta aos clientes.
 
 ## Instalação 
